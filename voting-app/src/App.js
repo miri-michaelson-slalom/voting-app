@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+
+import RadioButton from './components/radio-button';
 import './App.css';
 
-function App() {
+const options = [
+  {name: 'Option 1', color: 'red'}, 
+  {name: 'Option 2', color: 'blue'}, 
+  {name: 'Option 3', color: 'pink'}, 
+  {name: 'Option 4', color: 'purple'}, 
+
+]
+const App = () => {
+
+  const submitHandler = (e) => {
+    alert("hi!")
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form onSubmit={submitHandler}>
+        {options.map( (option) => {  
+            return (   
+              <RadioButton group='radioOptions' name={option.name} key={option.name}/>
+            )
+        })}
+        <input type="submit" value="Submit" />
+      </form>
     </div>
   );
 }
