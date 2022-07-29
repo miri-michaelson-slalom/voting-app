@@ -2,6 +2,21 @@
 import RadioButton from './components/radio-button';
 import './App.css';
 
+async function  loadSayhello() {
+  console.log("say hello")
+  const response = await fetch('http://localhost:9000/graphql', {
+     method:'POST',
+     headers:{'content-type':'application/json'},
+     body:JSON.stringify({query: 'test'})
+  })
+  const rsponseBody =  await response.json();
+  console.log("rsponseBody", rsponseBody)
+  return rsponseBody.data;
+  console.log("end of function")
+
+}
+
+
 const options = [
   {name: 'Option 1', color: 'red'}, 
   {name: 'Option 2', color: 'blue'}, 
@@ -12,7 +27,10 @@ const options = [
 const App = () => {
 
   const submitHandler = (e) => {
-    alert("hi!")
+    console.log("hello")
+    loadSayhello().then(res => console.log(res))
+    // alert("hi!")
+    e.preventDefault()
   };
 
   return (
