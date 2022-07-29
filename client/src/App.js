@@ -3,17 +3,13 @@ import RadioButton from './components/radio-button';
 import './App.css';
 
 async function  loadSayhello() {
-  console.log("say hello")
   const response = await fetch('http://localhost:9000/graphql', {
      method:'POST',
      headers:{'content-type':'application/json'},
-     body:JSON.stringify({query: 'test'})
+     body:JSON.stringify({query: '{test}'})
   })
   const rsponseBody =  await response.json();
-  console.log("rsponseBody", rsponseBody)
   return rsponseBody.data;
-  console.log("end of function")
-
 }
 
 
