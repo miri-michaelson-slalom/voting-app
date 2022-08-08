@@ -13,7 +13,7 @@ export const CTA = ({copy, onClickHandler}) => {
     // 242 pixels wide.
     <div>
       <StyledButton onClick={onClickHandler}>
-        <Text type="h1" copy={copy}></Text>
+        <Text type="p" size="large" copy={copy}></Text>
       </StyledButton>
     </div>
   )
