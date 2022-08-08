@@ -26,13 +26,10 @@ const Vote = () => {
   }, 5000)
 
   React.useEffect(() => {
-    console.log("in use effect")
     if (gameEnded) {
-      console.log("before / game over")
-
       navigate(`/game-over/${gameId}`);
     }
-  }, [navigate, gameEnded]);
+  }, [navigate, gameId, gameEnded]);
 
   const submitHandler = (e) => {
     axios.post('http://localhost:5000/register-vote', {game_id: gameId, userId: userId }).then(response =>  console.log(response))
