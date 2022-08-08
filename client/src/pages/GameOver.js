@@ -9,13 +9,21 @@ import styled from 'styled-components'
 
 const StyledDiv = styled.div`
   height: 100%;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   max-width: 500px;
   width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`
+const TextWrapper = styled.div`
+  margin: 10px;
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 `
 
 const GameOver = () => {
@@ -46,8 +54,10 @@ const GameOver = () => {
 
   return (
     <StyledDiv className="GameDescription" >
-      <Text type='h1' copy='ROUND COMPLETE!'/>
-      <Text type='p' size='small' copy={gameOverText}/>
+      <TextWrapper>
+        <Text type='h1' copy='ROUND COMPLETE!'/>
+        <Text type='p' size='small' copy={gameOverText}/>
+      </TextWrapper>
       <CTA onClickHandler={onClickHandler} copy="START"/>
     </StyledDiv>
   );
