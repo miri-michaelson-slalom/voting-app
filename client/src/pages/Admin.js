@@ -8,17 +8,16 @@ const Admin = () => {
 
   const startSessionHandler = async () => {
     const gameIdNumber = generate8DigitNumber()
-    setQRCode(`https://api.qrserver.com/v1/create-qr-code/?data=http://localhost:3000/game/${gameIdNumber}size=100x100`)
+    setQRCode(`https://api.qrserver.com/v1/create-qr-code/?data=http://localhost:3000/game-description/${gameIdNumber}size=100x100`)
     setGameId(gameIdNumber)
     console.log("URL")
-    console.log(`http://localhost:3000/game/${gameIdNumber}`)
+    console.log(`http://localhost:3000/game-description/${gameIdNumber}`)
     await axios.post("http://localhost:5000/games/addGame", { game_id: gameIdNumber, isOngoing: true }).then(response =>  console.log(response))
     await axios.post("http://localhost:5000/create-collection", { game_id: gameIdNumber }).then(response =>  console.log(response))
   };
 
   const endSessionHandler = async () => {
     setQRCode(null)
-    console.log(gameId)
     await axios.post("http://localhost:5000/games/updateGame", { game_id: gameId, isOngoing: false }).then(response =>  console.log(response))
   };
   return (
