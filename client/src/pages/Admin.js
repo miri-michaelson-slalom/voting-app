@@ -1,12 +1,27 @@
 import React from "react"
 import axios from 'axios';
 import { generate8DigitNumber } from '../utils/math-utils';
+import styled from 'styled-components';
+import CTA from '../components/CTA';
+import Text from '../components/text';
+
+
+const PageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
 
 const Admin = () => {
   const [qrCode, setQRCode] = React.useState(null);  
   const [gameId, setGameId] = React.useState(null);
 
   const startSessionHandler = async () => {
+    // End previous session
+    endSessionHandler();    
+    
+    // Start new session
     const gameIdNumber = generate8DigitNumber()
     setQRCode(`https://api.qrserver.com/v1/create-qr-code/?data=http://localhost:3000/game-description/${gameIdNumber}size=100x100`)
     setGameId(gameIdNumber)
@@ -21,12 +36,12 @@ const Admin = () => {
     await axios.post("http://localhost:5000/games/updateGame", { game_id: gameId, isOngoing: false }).then(response =>  console.log(response))
   };
   return (
-    <div className="Vote">
-      <h1>{`Game Id: ${gameId}`}</h1>
-      <img src={qrCode} alt="" title={`Game Id: ${gameId}`} />
-        <button onClick={startSessionHandler}>Start Session & Generate QR Code</button>
-        <button onClick={endSessionHandler}>End Session & display data to users</button>
-    </div>
+    <PageWrapper>
+        {gameId &&  <Text type='h1' copy={`Game Id: ${gameId}`}/>}
+        <img src={qrCode} alt="" title={`Game Id: ${gameId}`} />
+          <CTA onClickHandler={startSessionHandler} copy="Start New Session"/>
+          <CTA onClickHandler={endSessionHandler} copy="End Session"/>
+    </PageWrapper>
   );
 }
 

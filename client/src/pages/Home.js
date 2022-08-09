@@ -5,6 +5,7 @@ import CTA from '../components/CTA';
 import Text from '../components/text';
 import styled from 'styled-components';
 import { generate8DigitNumber } from '../utils/math-utils';
+import { useNavigate } from 'react-router-dom'
 
 const StyledDiv = styled.div`
   width: 100%;
@@ -32,12 +33,17 @@ const TextWrapper = styled.div`
 `
 
 const Home = () => {
+  let navigate = useNavigate();
   localStorage.setItem('userId', 'user-' + generate8DigitNumber())
 
   const [displayLoading, setDisplayLoading] = React.useState(true)
   React.useEffect(() => {
     setTimeout(() => setDisplayLoading(false), 2000)
   }, [])
+
+  const clickHandler = () => {
+    navigate('/scan-qr');
+  }
 
   const HomeScreen = (
     <PageWrapper>
@@ -48,7 +54,7 @@ const Home = () => {
         <Text type='h1' copy='SCAN QR CODE TO START GAME!'/>
       </TextWrapper>
       <StyledDiv>
-      <CTA copy="SCAN NOW"/>
+      <CTA copy="SCAN NOW" onClickHandler={clickHandler}/>
       </StyledDiv>
     </PageWrapper>
   );

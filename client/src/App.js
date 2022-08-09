@@ -6,7 +6,7 @@ import Admin from './pages/Admin';
 import Home from './pages/Home';
 import GameDescription from './pages/GameDescription';
 import GameOver from './pages/GameOver';
-// import QRScan from './pages/QRScan';
+import QRScan from './pages/QRScan';
 import './globals.css'
 
 import styled from 'styled-components'
@@ -31,7 +31,7 @@ const App = () =>  {
       <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />}/>
-            {/* <Route path="/scan-qr" element={<QRScan />}/> */}
+            <Route path="/scan-qr" element={<QRScan />}/>
             <Route path="/game-description/:gameId"  element={<GameDescription />} />
             <Route path="/game/:gameId"  element={<Vote />} />
             <Route path="/game-over/:gameId"  element={<GameOver />} />

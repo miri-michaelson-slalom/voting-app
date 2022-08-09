@@ -10,7 +10,6 @@ const StyledButton = styled.button`
 
 export const CTA = ({copy, onClickHandler}) => {
   return (
-    // 242 pixels wide.
     <div>
       <StyledButton onClick={onClickHandler}>
         <Text type="p" size="large" copy={copy}></Text>
