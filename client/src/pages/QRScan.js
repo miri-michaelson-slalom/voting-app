@@ -1,5 +1,6 @@
 import React from 'react';
-import { QrReader } from 'react-qr-reader';
+// import { QrReader } from 'react-qr-reader';
+import BarcodeScannerComponent from "react-qr-barcode-scanner";
 import {useNavigate} from 'react-router-dom';
 
 
@@ -8,21 +9,16 @@ const QRScan = () => {
 
   return (
     <>
-      <QrReader
-        onResult={(result, error) => {
-          if (!!result) {
-            // TODO: change this
-            navigate(result?.text)
-          }
-
-          if (!!error) {
-            console.info(error);
-          }
-        }}
-        style={{ width: '100%' }}
-      />
-    </>
-
+    <BarcodeScannerComponent
+      width={500}
+      height={500}
+      onUpdate={(err, result) => {
+        console.log(result)
+        if (result) navigate(result.text)
+        else console.error("Not Found");
+      }}
+    />
+  </>
   );
 }
 

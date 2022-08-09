@@ -23,7 +23,7 @@ const Admin = () => {
     
     // Start new session
     const gameIdNumber = generate8DigitNumber()
-    setQRCode(`https://api.qrserver.com/v1/create-qr-code/?data=http://localhost:3000/game-description/${gameIdNumber}size=100x100`)
+    setQRCode(`https://api.qrserver.com/v1/create-qr-code/?data=/game-description/${gameIdNumber}size=100x100`)
     setGameId(gameIdNumber)
     console.log("URL")
     console.log(`http://localhost:3000/game-description/${gameIdNumber}`)
